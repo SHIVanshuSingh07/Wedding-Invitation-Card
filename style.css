@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+    /* Color Palette */
+    --gold: #D4AF37;
+    --deep-red: #8B0000;
+    --ivory: #FFFFF0;
+    --vibrant-orange: #FF5733;
+    --dark-gray: #1a1a1a;
+    --light-gray: #2a2a2a;
+    --accent-dark: #2a0000;
+}
+
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(45deg, var(--dark-gray), var(--light-gray));
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    perspective: 1000px;
+}
+
+.invitation-container {
+    width: 90%;
+    max-width: 800px;
+    height: 600px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: left;
+    background: var(--ivory);
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.cover {
+    background: linear-gradient(135deg, var(--deep-red), var(--accent-dark));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--ivory);
+    z-index: 2;
+}
+
+.cover.open {
+    transform: rotateY(-180deg);
+}
+
+.page {
+    background: var(--ivory);
+    transform: translateZ(-1px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.names {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.details {
+    font-size: 1.2em;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.pulley {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 100px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.pulley:hover {
+    opacity: 1;
+}
+
+.ribbon {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: var(--gold);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.handle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: float 4s ease-in-out infinite;
+    opacity: 0;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background: rgba(212, 175, 55, 0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    display: none;
+    z-index: 3;
+}
+
+.back-button:hover {
+    background: rgba(212, 175, 55, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-button.visible {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100%) translateX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100%) translateX(20px);
+        opacity: 0;
+    }
+}
+
+.ganesha-container {
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.ganesha-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.ganesha-image:hover {
+    transform: scale(1.1);
+}
+
+.quote {
+    font-size: 1.2em;
+    font-style: italic;
+    color: var(--vibrant-orange);
+    margin-top: 15px;
+    animation: fadeInQuote 1.5s ease-in-out;
+}
+
+@keyframes fadeInQuote {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.qr-code {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    background: url('/api/placeholder/150/150') center/cover;
+    transition: transform 0.3s;
+}
+
+.qr-code:hover {
+    transform: scale(1.1);
+}
+
+.emoji {
+    font-size: 1.5em;
+    margin: 0 5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .invitation-container {
+        height: 500px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    .names {
+        font-size: 1.8em;
+    }
+
+    .details {
+        font-size: 1em;
+        line-height: 1.6;
+    }
+
+    .pulley {
+        right: 10px;
+        top: 45%;
+        width: 30px;
+        height: 80px;
+    }
+
+    .ganesha-image {
+        width: 130px;
+        height: 130px;
+    }
+
+    .quote {
+        font-size: 1em;
+    }
+
+    .qr-code {
+        width: 130px;
+        height: 130px;
+    }
+
+    .emoji {
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .invitation-container {
+        height: 400px;
+    }
+
+    .card {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .names {
+        font-size: 1.5em;
+    }
+
+    .details {
+        font-size: 0.9em;
+        line-height: 1.4;
+    }
+
+    .pulley {
+        right: 5px;
+        top: 40%;
+        width: 20px;
+        height: 60px;
+    }
+
+    .ganesha-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .quote {
+        font-size: 0.9em;
+    }
+
+    .qr-code {
+        width: 100px;
+        height: 100px;
+    }
+
+    .emoji {
+        font-size: 1em;
+    }
+}
